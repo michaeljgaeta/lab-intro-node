@@ -6,9 +6,9 @@ class SortedList {
 
   add(item) {
     this.items.push(item);
-    this.items.sort();
+    this.items.sort((a, b) => a - b);
     this.length++;
-    return this.items;
+    this.items;
   }
 
   load(pos) {
@@ -20,33 +20,39 @@ class SortedList {
   }
 
   max() {
-    if (!this.items) {
+    if (!this.items.length) {
       throw new Error("EmptySortedList");
     } else {
-      return Math.max(this.items);
+      let highestValue = Math.max(...this.items);
+      return highestValue;
     }
   }
 
   min() {
-    if (!this.items) {
+    if (!this.items.length) {
       throw new Error("EmptySortedList");
     } else {
-      return Math.min(this.items);
+      let lowestValue = Math.min(...this.items);
+      return lowestValue;
     }
   }
 
   sum() {
-    if (!this.items) {
+    if (!this.items.length) {
       return 0;
     } else {
-      let result = this.items.reduce(sum + current, 0);
-      return result;
+      let total = this.items.reduce((sum, current) => sum + current, 0);
+      return total;
     }
   }
 
   avg() {
-    let result = this.items.reduce(sum + current, 0);
-    return result / this.items.length;
+    if (!this.items.length) {
+      throw new Error("EmptySortedList");
+    } else {
+      let total = this.items.reduce((sum, current) => sum + current, 0);
+      return total / this.items.length;
+    }
   }
 }
 
